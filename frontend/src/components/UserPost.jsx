@@ -75,7 +75,7 @@ const UserPost = () => {
           </Box>
           <Flex gap={3} my={1} onClick={(e) => e.preventDefault()}>
             <Box>
-              <CiHeart size={28} />
+              <CiHeart size={27} />
             </Box>
             <Box>
               <FaComment size={25} />
