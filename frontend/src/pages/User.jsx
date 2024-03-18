@@ -1,7 +1,16 @@
+import UserHeader from "../components/UserHeader"
+import UserPost from "../components/UserPost"
 
 const User = () => {
   return (
-    <div>User</div>
+    <div>
+        <UserHeader/>
+        <UserPost/>
+        <UserPost/>
+        <UserPost/>
+        <UserPost/>
+        <UserPost/>
+    </div>
   )
 }
 
