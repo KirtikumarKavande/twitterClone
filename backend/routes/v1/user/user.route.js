@@ -10,6 +10,6 @@ const router = express.Router();
 router.post("/adduser", addUser);
 router.post("/login", loginUser);
 router.get("/logout", logout);
-router.get("/follow",auth,followUnfollowUser);
+router.get("/follow/:id",auth,followUnfollowUser);
 
 module.exports = router;
