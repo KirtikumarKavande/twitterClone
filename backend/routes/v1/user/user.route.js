@@ -11,5 +11,6 @@ router.post("/adduser", addUser);
 router.post("/login", loginUser);
 router.get("/logout", logout);
 router.get("/follow/:id",auth,followUnfollowUser);
+router.get("/follow/:id",auth,followUnfollowUser);
 
 module.exports = router;
