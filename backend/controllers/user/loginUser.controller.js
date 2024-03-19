@@ -13,7 +13,7 @@ const loginUser = asyncHandler(async (req, res) => {
       .json(new ApiError(400, "User does Not Exist plz signup"));
   }
   if (user && (await verifyPassword(req.body.password, user.password))) {
-    let token = signJwt({ id: user.id });
+    let token = signJwt({ id: user.id },res);
     return res
       .status(200)
       .json(

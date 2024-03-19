@@ -43,7 +43,7 @@ let addUser = asyncHandler(async function (req, res) {
   });
   let resData = await user.save();
 
-  let token = signJwt({ id: resData.id });
+  let token = signJwt({ id: resData.id },res);
   resData = resData.toObject();
   delete resData.password; // Remove password from response data
   resData.token = token;
