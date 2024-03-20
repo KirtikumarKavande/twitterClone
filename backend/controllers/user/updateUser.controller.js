@@ -9,7 +9,7 @@ const updateUser = asyncHandler(async (req, res) => {
 
   const user = await User.findById(req.user._id);
   if (!user) return;
-  if (user.username !== username) {
+   if (user.username !== username) {
     if (await User.findOne({ username })) {
       return res
         .status(200)
