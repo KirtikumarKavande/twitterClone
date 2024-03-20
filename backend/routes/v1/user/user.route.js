@@ -6,7 +6,7 @@ const followUnfollowUser = require("../../../controllers/user/followUnfollowUser
 const auth = require("../../../middleware/auth");
 const updateUser = require("../../../controllers/user/updateUser.controller");
 const upload = require("../../../middleware/multer");
-const getPerticularUser = require("../../../controllers/user/getPerticularUser");
+const getPerticularUser = require("../../../controllers/user/getPerticularUser.controller");
 
 const router = express.Router();
 
