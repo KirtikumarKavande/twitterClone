@@ -3,19 +3,20 @@ const User = require("../../models/user.model");
 const ApiError = require("../../utils/ApiError");
 const ApiResponse = require("../../utils/ApiResponse");
 const asyncHandler = require("../../utils/asyncHandler");
-
+const uploadToCloudinary = require("../../helper/cloudanaryUpload");
 const updateUser = asyncHandler(async (req, res) => {
-  const { name, username, profilePic, bio, password } = req.body;
+  const { name, username, bio, password } = req.body;
 
   const user = await User.findById(req.user._id);
   if (!user) return;
-   if (user.username !== username) {
+  if (user.username !== username) {
     if (await User.findOne({ username })) {
       return res
         .status(200)
         .json(new ApiError(200, {}, "username already exists"));
     }
   }
+  let profileImg = await uploadToCloudinary(req.file);
 
   let updatedPassword;
   if (password) {
@@ -23,7 +24,7 @@ const updateUser = asyncHandler(async (req, res) => {
   }
 
   user.name = name || user.name;
-  user.profilePic = profilePic || user.profile;
+  user.profilePic = profileImg || user.profile;
   user.username = username || user.username;
   user.password = updatedPassword || user.password;
   user.bio = bio || user.bio;
