@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const connectToDB = require("./db");
-const version1Route = require("./routes/v1");
+const routes = require("./routes/index");
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 
@@ -22,7 +22,7 @@ connectToDB()
     console.log("error while connecting");
   });
 
-app.use("/api", version1Route);
+app.use("/api", routes);
 
 app.listen(process.env.PORT || 4000, () => {
   console.log(`server is running on port ${process.env.PORT}`);

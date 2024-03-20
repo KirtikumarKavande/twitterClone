@@ -7,7 +7,6 @@ const followUnfollowUser = asyncHandler(async function (req, res) {
   const { id } = req.params;
   const userToModify = await User.findById(id);
   const currentUser = await User.findById(req.user._id);
-  console.log(userToModify, currentUser);
 
   if (id === req.user._id)
     return res

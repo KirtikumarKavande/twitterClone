@@ -13,9 +13,9 @@ const router = express.Router();
 router.post("/adduser", addUser);
 router.post("/login", loginUser);
 router.get("/logout", logout);
-router.get("/follow/:id",auth,followUnfollowUser);
-router.get("/follow/:id",auth,followUnfollowUser);
-router.post("/update",auth,upload.single('profilePic'),updateUser);
-router.get("/profile/:id",auth,getPerticularUser);
+router.get("/follow/:id", auth, followUnfollowUser);
+router.get("/follow/:id", auth, followUnfollowUser);
+router.post("/update", auth, upload.single("profilePic"), updateUser);
+router.get("/profile/:id", auth, getPerticularUser);
 
 module.exports = router;
