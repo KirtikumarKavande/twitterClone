@@ -6,6 +6,7 @@ const followUnfollowUser = require("../../../controllers/user/followUnfollowUser
 const auth = require("../../../middleware/auth");
 const updateUser = require("../../../controllers/user/updateUser.controller");
 const upload = require("../../../middleware/multer");
+const getPerticularUser = require("../../../controllers/user/getPerticularUser");
 
 const router = express.Router();
 
@@ -15,5 +16,6 @@ router.get("/logout", logout);
 router.get("/follow/:id",auth,followUnfollowUser);
 router.get("/follow/:id",auth,followUnfollowUser);
 router.post("/update",auth,upload.single('profilePic'),updateUser);
+router.get("/profile/:id",auth,getPerticularUser);
 
 module.exports = router;
