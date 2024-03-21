@@ -14,6 +14,7 @@ import { IoIosSend } from "react-icons/io";
 import Comment from "../components/Comment";
 
 const PostPage = () => {
+  
   return (
     <>
       <Flex>
