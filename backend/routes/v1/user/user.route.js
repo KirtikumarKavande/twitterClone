@@ -15,7 +15,7 @@ router.post("/login", loginUser);
 router.get("/logout", logout);
 router.get("/follow/:id", auth, followUnfollowUser);
 router.get("/follow/:id", auth, followUnfollowUser);
-router.post("/update", auth, upload.single("profilePic"), updateUser);
+router.post("/update", auth, upload.single("img"), updateUser);
 router.get("/profile/:id", auth, getPerticularUser);
 
 module.exports = router;
