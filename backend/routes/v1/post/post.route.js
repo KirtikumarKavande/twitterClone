@@ -6,6 +6,7 @@ const getPost = require('../../../controllers/post/getPost.controller');
 const deletePost = require('../../../controllers/post/deletePost.controller');
 const likePostController = require('../../../controllers/post/likePost.controller');
 const replyToPost = require('../../../controllers/post/replayPost.controller');
+const feed = require('../../../controllers/post/feed.controller');
 
 let router=express.Router()
 
@@ -14,5 +15,6 @@ router.get('/getpost',auth,getPost)
 router.get('/deletepost/:id',auth,deletePost)
 router.get('/likepost/:id',auth,likePostController)
 router.post('/replaypost/:id',auth,replyToPost)
+router.get('/feed',auth,feed)
 
 module.exports = router
