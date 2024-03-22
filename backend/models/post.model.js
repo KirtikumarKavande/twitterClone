@@ -27,15 +27,9 @@ const postSchema = mongoose.Schema(
           ref: "User",
           required: true,
         },
-        text: {
+        comment: {
           type: String,
           required: true,
-        },
-        userProfilePic: {
-          type: String,
-        },
-        username: {
-          type: String,
         },
       },
     ],
