@@ -45,8 +45,8 @@ export default function SignupCard() {
 			});
 			const data = await res.json();
 
-			if (data.error) {
-				showToast("Error", data.error, "error");
+			if (data.success) {
+				showToast("Error", data.message, "error");
 				return;
 			}
 
