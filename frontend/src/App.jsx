@@ -10,6 +10,7 @@ import Homepage from "./pages/Homepage";
 
 const App = () => {
   const user = useRecoilValue(userAtom);
+  console.log("user",user)
   return (
     <Container maxW={"620px"}>
       <Header />
