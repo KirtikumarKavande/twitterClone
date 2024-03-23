@@ -27,15 +27,7 @@ const Header = () => {
 
 {user && (
 				<Flex alignItems={"center"} gap={4}>
-					<Link as={RouterLink} to={`/${user.username}`}>
-						<RxAvatar size={24} />
-					</Link>
-					<Link as={RouterLink} to={`/chat`}>
-						<BsFillChatQuoteFill size={20} />
-					</Link>
-					<Link as={RouterLink} to={`/settings`}>
-						<MdOutlineSettings size={20} />
-					</Link>
+				
 					<Button size={"xs"} onClick={logout}>
 						<FiLogOut size={20} />
 					</Button>

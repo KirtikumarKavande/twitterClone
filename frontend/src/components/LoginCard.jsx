@@ -42,7 +42,6 @@ export default function LoginCard() {
 				body: JSON.stringify(inputs),
 			});
 			const data = await res.json();
-      console.log(data)
 			if (!data.success) {
 				showToast("Error", data.message, "error");
 				return;

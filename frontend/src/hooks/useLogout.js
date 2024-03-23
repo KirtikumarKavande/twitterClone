@@ -9,15 +9,16 @@ const useLogout = () => {
 	const logout = async () => {
 		try {
 			const res = await fetch("http://localhost:4000/api/v1/user/logout", {
-				method: "POST",
+				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
 				},
 			});
 			const data = await res.json();
+			console.log(data)
 
-			if (data.error) {
-				showToast("Error", data.error, "error");
+			if (!data.success) {
+				showToast("Error", data.message, "error");
 				return;
 			}
 
