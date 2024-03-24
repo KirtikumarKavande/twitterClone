@@ -3,6 +3,7 @@ const fs = require("fs");
 const ApiError = require("../utils/ApiError");
 async function uploadToCloudinary(file) {
   try {
+    
     cloudinary.config({
       cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
       api_key: process.env.CLOUDINARY_API_KEY,

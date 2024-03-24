@@ -16,7 +16,10 @@ const updateUser = asyncHandler(async (req, res) => {
         .json(new ApiError(200, {}, "username already exists"));
     }
   }
-  let profileImg = await uploadToCloudinary(req.file);
+  let profileImg
+  if (req?.file) {
+     profileImg = await uploadToCloudinary(req.file);
+  }
 
   let updatedPassword;
   if (password) {
@@ -28,9 +31,12 @@ const updateUser = asyncHandler(async (req, res) => {
   user.username = username || user.username;
   user.password = updatedPassword || user.password;
   user.bio = bio || user.bio;
-  let resData = await user.save();
+  let resData = await user.save()
+  delete resData.password
 
-  res.status(200).json(new ApiResponse(200, {}, "user updated successfully"));
+  res
+    .status(200)
+    .json(new ApiResponse(200, resData, "user updated successfully"));
 });
 
 module.exports = updateUser;
