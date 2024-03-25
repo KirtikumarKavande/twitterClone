@@ -5,8 +5,7 @@ const ApiResponse = require("../../utils/ApiResponse");
 
 const createPost = asyncHandler(async (req, res) => {
   const { text } = req.body;
-  let postImg = await uploadToCloudinary(req.file);
-
+  let postImg = await uploadToCloudinary(req.file,"",res);
   const post = new Post({
     postedBy: req.user._id,
     text,

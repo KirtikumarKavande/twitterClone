@@ -8,6 +8,7 @@ import userAtom from "./atoms/user.atom";
 import AuthPage from "./pages/Auth";
 import Homepage from "./pages/Homepage";
 import UpdateProfilePage from "./pages/UpdateProfilePage";
+import CreatePost from "./components/CreatePost";
 
 const App = () => {
   const user = useRecoilValue(userAtom);
@@ -28,7 +29,7 @@ const App = () => {
           element={user ? <UpdateProfilePage /> : <Navigate to="/auth" />}
         />
 
-        <Route path="/:username" element={<User/>} />
+        <Route path="/:username" element={<><User/> <CreatePost/> </>} />
         {/* <Route path="/:username/post/:pId" element={<Post />} /> */}
       </Routes>
     </Container>
