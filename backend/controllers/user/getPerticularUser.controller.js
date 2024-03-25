@@ -3,8 +3,8 @@ const ApiResponse = require("../../utils/ApiResponse");
 const asyncHandler = require("../../utils/asyncHandler");
 
 const getPerticularUser = asyncHandler(async (req, res) => {
-  const { id } = req.params;
-  let user = await User.findById(id).select("-password");
+  const { username } = req.params;
+  let user = await User.findOne({username}).select("-password");
 
   return res
     .status(200)

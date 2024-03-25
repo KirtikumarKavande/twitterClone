@@ -13,6 +13,7 @@ const loginUser = asyncHandler(async (req, res) => {
       .status(400)
       .json(new ApiError(400, "User does Not Exist plz signup"));
   }
+  
   if (user && (await verifyPassword(req.body.password, user.password))) {
     let token = signJwt({ id: user.id }, res);
     return res
@@ -20,7 +21,7 @@ const loginUser = asyncHandler(async (req, res) => {
       .json(
         new ApiResponse(
           200,
-          { email: user.email, bio: user.bio, username: user.username,name:user.name,profilePic: user.profilePic},
+          { _id:user._id,email: user.email, bio: user.bio, username: user.username,name:user.name,profilePic: user.profilePic},
           "SignIn success"
         )
       );
