@@ -18,7 +18,7 @@ import useShowToast from "../hooks/useShowToast";
 
 export default function UpdateProfilePage() {
   const [user, setUser] = useRecoilState(userAtom);
-  console.log("user from recoil",user);
+  console.log("user from recoil", user);
   const [inputs, setInputs] = useState({
     name: user.name,
     username: user.username,
@@ -52,11 +52,10 @@ export default function UpdateProfilePage() {
         return formData;
       };
 
-
       const res = await fetch(`http://localhost:4000/api/v1/user/update`, {
         method: "POST",
         headers: {
-			"Contetnt-Type":"multipart/form-data" 
+          "Contetnt-Type": "multipart/form-data",
         },
         credentials: "include",
         body: createFormData(),
@@ -75,12 +74,10 @@ export default function UpdateProfilePage() {
       setUpdating(false);
     }
   };
- console.log(
-	"consoling user",user
- )
-  
+  console.log("consoling user", user);
+
   return (
-    <form onSubmit={handleSubmit} encType="multipart/form-data">
+    <form onSubmit={handleSubmit}>
       <Flex align={"center"} justify={"center"} my={6}>
         <Stack
           spacing={4}

@@ -13,13 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 
-connectToDB()
-  .then(() => {
-    console.log("Db connection success");
-  })
-  .catch(() => {
-    console.log("error while connecting");
-  });
+connectToDB();
 
 app.use("/api", routes);
 

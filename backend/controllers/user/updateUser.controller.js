@@ -18,7 +18,7 @@ const updateUser = asyncHandler(async (req, res) => {
   }
   let profileImg
   if (req?.file) {
-     profileImg = await uploadToCloudinary(req.file);
+     profileImg = await uploadToCloudinary(req.file,user?.profilePic,res);
   }
 
   let updatedPassword;
@@ -34,7 +34,7 @@ const updateUser = asyncHandler(async (req, res) => {
   let resData = await user.save()
   delete resData.password
 
-  res
+  return res
     .status(200)
     .json(new ApiResponse(200, resData, "user updated successfully"));
 });
