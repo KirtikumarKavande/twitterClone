@@ -16,7 +16,7 @@ const User = () => {
     try {
       let data = await getDataFromDb(`user/profile/${username}`);
       if (!data.success) {
-        showToast("Error", data.error, "error");
+        showToast("Error", data.message, "error");
         return;
       }
       // if (data.isFrozen) {

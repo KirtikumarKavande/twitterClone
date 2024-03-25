@@ -10,7 +10,6 @@ const feed = require('../../../controllers/post/feed.controller');
 const getUserByUsername = require('../../../controllers/post/getPostByUsername.controller');
 
 let router=express.Router()
-
 router.post('/createpost',auth, upload.single("img"),createPost)
 router.get('/getpost',auth,getPost)
 router.get('/deletepost/:id',auth,deletePost)

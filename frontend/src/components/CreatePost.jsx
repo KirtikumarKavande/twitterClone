@@ -86,7 +86,7 @@ const CreatePost = () => {
 
       const data = await res.json();
       if (!data.success) {
-        showToast("Error", data.error, "error");
+        showToast("Error", data.message, "error");
         return;
       }
       showToast("Success", "Post created successfully", "success");

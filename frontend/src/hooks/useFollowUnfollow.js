@@ -25,8 +25,8 @@ const useFollowUnfollow = (user) => {
     try {
       const data = await getDataFromDB(`user/follow/${user._id}`);
 
-      if (data.error) {
-        showToast("Error", data.error, "error");
+      if (!data.success) {
+        showToast("Error", data.message, "error");
         return;
       }
 
