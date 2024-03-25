@@ -46,7 +46,6 @@ let addUser = asyncHandler(async function (req, res) {
   let token = signJwt({ id: resData.id },res);
   resData = resData.toObject();
   delete resData.password; // Remove password from response data
-  resData.token = token;
 
   return res.status(201).json(new ApiResponse(201, resData, "user created"));
 });

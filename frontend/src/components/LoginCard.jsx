@@ -19,12 +19,15 @@ import { useSetRecoilState } from "recoil";
 import authScreenAtom from "../atoms/auth.atoms";
 import useShowToast from "../hooks/useShowToast";
 import userAtom from "../atoms/user.atom";
+import usePostDataToDb from "../hooks/usePostDataToDb";
 
 export default function LoginCard() {
   const [showPassword, setShowPassword] = useState(false);
   const setAuthScreen = useSetRecoilState(authScreenAtom);
   const setUser = useSetRecoilState(userAtom);
   const [loading, setLoading] = useState(false);
+
+  const postDataFromDb = usePostDataToDb();
 
   const [inputs, setInputs] = useState({
     email: "",
@@ -34,15 +37,8 @@ export default function LoginCard() {
   const handleLogin = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:4000/api/v1/user/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(inputs),
-      });
-      const data = await res.json();
+      let data = await postDataFromDb("user/login", inputs);
+
       if (!data.success) {
         showToast("Error", data.message, "error");
         return;
