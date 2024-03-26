@@ -23,6 +23,7 @@ const Post = ({ post, postedBy }) => {
   useEffect(() => {
     const getUser = async () => {
       try {
+        if(!postedBy) return
         const data = await getDataFromDb(`user/userid/${postedBy}`);
 
         if (!data.success) {

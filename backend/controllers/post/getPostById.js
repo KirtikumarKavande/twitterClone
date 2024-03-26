@@ -3,7 +3,6 @@ const ApiResponse = require("../../utils/ApiResponse");
 const asyncHandler = require("../../utils/asyncHandler");
 
 const getPostById=asyncHandler( async(req,res)=>{
-    console.log("pid",req.params.pid)
   const post= await Post.findById(req.params.pid)
 res.status(200).json(new ApiResponse(200,{post}," post fetched successfully"))
 })

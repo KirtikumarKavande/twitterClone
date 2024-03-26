@@ -39,11 +39,9 @@ const [userSuggestion,setUserSuggestion] = useState([])
   }, [showToast, setPosts]);
 
   async function suggestedUser() {
-    console.log("inside effect")
    const userData= await getDataFromDb("user/suggesteduser");
    setUserSuggestion(userData)
   }
-  console.log(userSuggestion)
 
   useEffect(() => {
     suggestedUser();

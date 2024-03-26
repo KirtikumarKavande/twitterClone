@@ -23,7 +23,6 @@ import useGetDataFromDB from "../hooks/useGetDataFromDb";
 
 const PostPage = () => {
   const { user, loading } = useGetUserProfile();
-  console.log("i think",user)
   const [posts, setPosts] = useRecoilState(postsAtom);
   const showToast = useShowToast();
   const { pid } = useParams();
@@ -32,9 +31,7 @@ const PostPage = () => {
   let getDataFromDb= useGetDataFromDB()
   const currentPost = posts[0]?.post;
 
-  console.log("details",currentPost)
 
-console.log("pid",pid)
   useEffect(() => {
     const getPost = async () => {
       setPosts([]);
@@ -79,7 +76,6 @@ console.log("pid",pid)
   }
 
   if (!currentPost) return null;
-  console.log("currentPost", currentPost);
 
   return (
     <>
