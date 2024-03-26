@@ -31,7 +31,6 @@ const useGetUserProfile = () => {
 	};
 
 	useEffect(() => {
-		console.log("kirtikumar")
 		getUser();
 	},[username]);
 

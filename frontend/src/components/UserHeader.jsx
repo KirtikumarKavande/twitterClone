@@ -12,8 +12,6 @@ import userAtom from "../atoms/user.atom"
 
 const UserHeader = ({user}) => {
   const currentUser = useRecoilValue(userAtom); // logged in user
-  console.log("currentUser",currentUser)
-  console.log("user",user)
   const toast = useToast(user);
 	const { handleFollowUnfollow, following, updating } = useFollowUnfollow(user);
 

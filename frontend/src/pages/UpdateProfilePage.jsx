@@ -18,7 +18,6 @@ import useShowToast from "../hooks/useShowToast";
 
 export default function UpdateProfilePage() {
   const [user, setUser] = useRecoilState(userAtom);
-  console.log("user from recoil", user);
   const [inputs, setInputs] = useState({
     name: user.name,
     username: user.username,
@@ -26,7 +25,6 @@ export default function UpdateProfilePage() {
     bio: user.bio,
     password: "",
   });
-  console.log("inputs", inputs);
   const fileRef = useRef(null);
   const [updating, setUpdating] = useState(false);
 
@@ -74,7 +72,6 @@ export default function UpdateProfilePage() {
       setUpdating(false);
     }
   };
-  console.log("consoling user", user);
 
   return (
     <form onSubmit={handleSubmit}>

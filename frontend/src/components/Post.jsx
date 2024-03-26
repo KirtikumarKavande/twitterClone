@@ -60,7 +60,6 @@ const Post = ({ post, postedBy }) => {
   };
 
   if (!user) return null;
-  console.log("user data",post.replies)
   return (
     <Link to={`/${user.username}/post/${post._id}`}>
       <Flex gap={3} mb={4} py={5}>

@@ -6,7 +6,6 @@ const ApiResponse = require("../../utils/ApiResponse");
 const asyncHandler = require("../../utils/asyncHandler");
 
 const loginUser = asyncHandler(async (req, res) => {
-  console.log("email check", req.body.email);
   let user = await User.findOne({ email: req.body.email.trim() });
   if (!user) {
     return res

@@ -11,7 +11,6 @@ const User = () => {
   const showToast = useShowToast();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  console.log(username);
   const getUser = async () => {
     try {
       let data = await getDataFromDb(`user/profile/${username}`);
@@ -32,10 +31,8 @@ const User = () => {
   };
 
   useEffect(() => {
-    console.log("good ");
     getUser();
   }, [username]);
-console.log(user)
   return (
     <div>
       {user && <UserHeader user={user.data} />}

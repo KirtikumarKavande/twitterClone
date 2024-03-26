@@ -8,6 +8,7 @@ const updateUser = require("../../../controllers/user/updateUser.controller");
 const upload = require("../../../middleware/multer");
 const getPerticularUser = require("../../../controllers/user/getPerticularUser.controller");
 const getUserById = require("../../../controllers/user/getUserById");
+const suggestedUser = require("../../../controllers/user/suggestedUser");
 
 const router = express.Router();
 
@@ -18,6 +19,7 @@ router.get("/follow/:id", auth, followUnfollowUser);
 router.post("/update", auth, upload.single("img"), updateUser);
 router.get("/profile/:username", auth, getPerticularUser);
 router.get('/userid/:id',auth,getUserById)
+router.get('/suggesteduser',auth,suggestedUser)
 
 
 module.exports = router;

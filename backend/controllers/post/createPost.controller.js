@@ -17,7 +17,6 @@ const createPost = asyncHandler(async (req, res) => {
     .status(201)
     .json(new ApiResponse(201, postData, "post created successfully"));
 
-  console.log("hi from post");
 });
 
 module.exports = createPost;
