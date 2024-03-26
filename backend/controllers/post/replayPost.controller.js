@@ -6,6 +6,8 @@ const asyncHandler = require("../../utils/asyncHandler");
 const replyToPost = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const { comment } = req.body;
+  console.log("comment", comment);
+  
 
   const user = await User.findById(req.user._id);
 

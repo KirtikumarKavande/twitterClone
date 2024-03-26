@@ -30,7 +30,7 @@ const App = () => {
         />
 
         <Route path="/:username" element={<><User/> <CreatePost/> </>} />
-        {/* <Route path="/:username/post/:pId" element={<Post />} /> */}
+        <Route path='/:username/post/:pid' element={<Post />} />
       </Routes>
     </Container>
   );

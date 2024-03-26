@@ -1,19 +1,21 @@
-import { Avatar,  Flex, Text } from "@chakra-ui/react";
+import { Avatar, Divider, Flex, Text } from "@chakra-ui/react";
 
-const Comment = () => {
+const Comment = ({ reply, lastReply }) => {
+	console.log("replay",reply)
 	return (
 		<>
 			<Flex gap={4} py={2} my={2} w={"full"}>
-				<Avatar src={"https://bit.ly/dan-abramov"} size={"sm"} />
+				<Avatar src={reply.profilePic} size={"sm"} />
 				<Flex gap={1} w={"full"} flexDirection={"column"}>
 					<Flex w={"full"} justifyContent={"space-between"} alignItems={"center"}>
 						<Text fontSize='sm' fontWeight='bold'>
-						kirtikumarKavande
+							{reply.username}
 						</Text>
 					</Flex>
-					<Text>That is good</Text>
+					<Text>{reply.comment}</Text>
 				</Flex>
 			</Flex>
+			{!lastReply ? <Divider /> : null}
 		</>
 	);
 };

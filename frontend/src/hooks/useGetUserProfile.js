@@ -22,7 +22,7 @@ const useGetUserProfile = () => {
 			// 	setUser(null);
 			// 	return;
 			// }
-			setUser(data);
+			setUser(data.data);
 		} catch (error) {
 			showToast("Error", error.message, "error");
 		} finally {

@@ -8,6 +8,7 @@ const likePostController = require('../../../controllers/post/likePost.controlle
 const replyToPost = require('../../../controllers/post/replayPost.controller');
 const feed = require('../../../controllers/post/feed.controller');
 const getUserByUsername = require('../../../controllers/post/getPostByUsername.controller');
+const getPostById = require('../../../controllers/post/getPostById');
 
 let router=express.Router()
 router.post('/createpost',auth, upload.single("img"),createPost)
@@ -17,5 +18,6 @@ router.get('/likepost/:id',auth,likePostController)
 router.post('/replaypost/:id',auth,replyToPost)
 router.get('/feed',auth,feed)
 router.get('/userspost/:username',auth,getUserByUsername)
+router.get('/postbyid/:pid',auth,getPostById)
 
 module.exports = router

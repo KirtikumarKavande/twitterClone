@@ -5,30 +5,92 @@ import {
   Divider,
   Flex,
   Image,
+  Spinner,
   Text,
 } from "@chakra-ui/react";
-import { CiHeart } from "react-icons/ci";
-import { FaComment } from "react-icons/fa";
-import { IoIosSend } from "react-icons/io";
-// import Actions from "../components/Actions";
+import Actions from "../components/Actions";
+import { useEffect } from "react";
 import Comment from "../components/Comment";
+import useGetUserProfile from "../hooks/useGetUserProfile";
+import useShowToast from "../hooks/useShowToast";
+import { useNavigate, useParams } from "react-router-dom";
+import { formatDistanceToNow } from "date-fns";
+import { useRecoilState, useRecoilValue } from "recoil";
+import userAtom from "../atoms/user.atom";
+import { DeleteIcon } from "@chakra-ui/icons";
+import postsAtom from "../atoms/posts.atom";
+import useGetDataFromDB from "../hooks/useGetDataFromDb";
 
 const PostPage = () => {
-  
+  const { user, loading } = useGetUserProfile();
+  console.log("i think",user)
+  const [posts, setPosts] = useRecoilState(postsAtom);
+  const showToast = useShowToast();
+  const { pid } = useParams();
+  const currentUser = useRecoilValue(userAtom);
+  const navigate = useNavigate();
+  let getDataFromDb= useGetDataFromDB()
+  const currentPost = posts[0]?.post;
+
+  console.log("details",currentPost)
+
+console.log("pid",pid)
+  useEffect(() => {
+    const getPost = async () => {
+      setPosts([]);
+      try {
+
+       let data= await getDataFromDb(`/post/postbyid/${pid}`)
+     
+        if (!data.success) {
+          showToast("Error", data.message, "error");
+          return;
+        }
+        setPosts([data.data]);
+      } catch (error) {
+        showToast("Error", error.message, "error");
+      }
+    };
+    getPost();
+  }, [showToast, pid, setPosts]);
+
+  const handleDeletePost = async () => {
+    try {
+      if (!window.confirm("Are you sure you want to delete this post?")) return;
+      const data=getDataFromDb(`post/deletepost/${currentPost._id}`)
+
+      if (data.success) {
+        showToast("Error", data.message, "error");
+        return;
+      }
+      showToast("Success", "Post deleted", "success");
+      navigate(`/${user.username}`);
+    } catch (error) {
+      showToast("Error", error.message, "error");
+    }
+  };
+
+  if (!user && loading) {
+    return (
+      <Flex justifyContent={"center"}>
+        <Spinner size={"xl"} />
+      </Flex>
+    );
+  }
+
+  if (!currentPost) return null;
+  console.log("currentPost", currentPost);
+
   return (
     <>
       <Flex>
         <Flex w={"full"} alignItems={"center"} gap={3}>
-          <Avatar
-            src={"https://bit.ly/dan-abramov"}
-            size={"md"}
-            name="Mark Zuckerberg"
-          />
+          <Avatar src={user.profilePic} size={"md"} name="Mark Zuckerberg" />
           <Flex>
             <Text fontSize={"sm"} fontWeight={"bold"}>
-              kirtikumar
+              {user.username}
             </Text>
-            <Image src="/img/verified.png" w="4" h={4} ml={4} />
+            <Image src="/verified.png" w="4" h={4} ml={4} />
           </Flex>
         </Flex>
         <Flex gap={4} alignItems={"center"}>
@@ -38,36 +100,34 @@ const PostPage = () => {
             textAlign={"right"}
             color={"gray.light"}
           >
-            1y ago
+            {formatDistanceToNow(new Date(currentPost.createdAt))} ago
           </Text>
+
+          {currentUser?._id === user._id && (
+            <DeleteIcon
+              size={20}
+              cursor={"pointer"}
+              onClick={handleDeletePost}
+            />
+          )}
         </Flex>
       </Flex>
 
-      <Text my={3}>Plz like my post</Text>
+      <Text my={3}>{currentPost.text}</Text>
 
-      <Box
-        borderRadius={6}
-        overflow={"hidden"}
-        border={"1px solid"}
-        borderColor={"gray.light"}
-      >
-        <Image src={"../../public/img/post1.png"} w={"full"} />
-      </Box>
+      {currentPost.img && (
+        <Box
+          borderRadius={6}
+          overflow={"hidden"}
+          border={"1px solid"}
+          borderColor={"gray.light"}
+        >
+          <Image src={currentPost.img} w={"full"} />
+        </Box>
+      )}
 
-      {/* <Flex gap={3} my={3}>
-				<Actions post={currentPost} />
-			</Flex> */}
-
-      <Flex gap={3} my={1} onClick={(e) => e.preventDefault()}>
-        <Box>
-          <CiHeart size={28} />
-        </Box>
-        <Box>
-          <FaComment size={25} />
-        </Box>
-        <Box>
-          <IoIosSend size={27} />
-        </Box>
+      <Flex gap={3} my={3}>
+        <Actions post={currentPost} />
       </Flex>
 
       <Divider my={4} />
@@ -81,11 +141,16 @@ const PostPage = () => {
       </Flex>
 
       <Divider my={4} />
-
-      <Comment />
-      <Comment />
-      <Comment />
-      <Comment />
+      {currentPost.replies.map((reply) => (
+        <Comment
+          key={reply._id}
+          reply={reply}
+          lastReply={
+            reply._id ===
+            currentPost.replies[currentPost.replies.length - 1]._id
+          }
+        />
+      ))}
     </>
   );
 };

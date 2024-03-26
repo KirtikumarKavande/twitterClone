@@ -76,7 +76,7 @@ let getDataFromDB= useGetDataFromDB()
 		if (isReplying) return;
 		setIsReplying(true);
 		try {
-        let data= await  postDataToDb(`post/replaypost/${post._id}`)
+        let data= await  postDataToDb(`post/replaypost/${post._id}`,{comment:reply})
 		
 			if (!data.success) return showToast("Error", data.message, "error");
 
