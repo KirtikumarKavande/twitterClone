@@ -4,6 +4,7 @@ import useShowToast from "../hooks/useShowToast";
 import { useRecoilState } from "recoil";
 import postsAtom from "../atoms/posts.atoms";
 import useGetDataFromDB from "../hooks/useGetDataFromDb";
+import Post from "../components/Post";
 
 const HomePage = () => {
   const [posts, setPosts] = useRecoilState(postsAtom);
