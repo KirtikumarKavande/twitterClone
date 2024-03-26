@@ -2,7 +2,7 @@ import { Box, Flex, Spinner } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import useShowToast from "../hooks/useShowToast";
 import { useRecoilState } from "recoil";
-import postsAtom from "../atoms/posts.atoms";
+import postsAtom from "../atoms/posts.atom";
 import useGetDataFromDB from "../hooks/useGetDataFromDb";
 import Post from "../components/Post";
 

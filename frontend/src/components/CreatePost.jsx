@@ -22,7 +22,7 @@ import { useRef, useState } from "react";
 import { BsFillImageFill } from "react-icons/bs";
 import { useRecoilState, useRecoilValue } from "recoil";
 import userAtom from "../atoms/user.atom";
-import postsAtom from "../atoms/posts.atoms";
+import postsAtom from "../atoms/posts.atom";
 import { useParams } from "react-router-dom";
 import usePreviewImg from "../hooks/usePreviewImg";
 import useShowToast from "../hooks/useShowToast";
