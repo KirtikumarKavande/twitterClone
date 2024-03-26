@@ -1,4 +1,5 @@
 const Post = require("../../models/post.model");
+const User = require("../../models/user.model");
 const ApiResponse = require("../../utils/ApiResponse");
 const asyncHandler = require("../../utils/asyncHandler");
 
@@ -6,13 +7,15 @@ const replyToPost = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const { comment } = req.body;
 
-  console.log(req.user)
+  const user = await User.findById(req.user._id);
+
   await Post.findByIdAndUpdate(id, {
     $push: {
       replies: {
         comment: comment,
         userId: req.user._id,
-       
+        profilePic: user.profilePic,
+        username: user.username,
       },
     },
   });
