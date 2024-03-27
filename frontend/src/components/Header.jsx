@@ -23,7 +23,7 @@ const Header = () => {
   const logout = useLogout();
   const setAuthScreen = useSetRecoilState(authScreenAtom);
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+console.log("check for user",user)
   return (
     <Flex justifyContent={"space-between"} mt={6} mb="12">
       {user && (
@@ -59,7 +59,7 @@ const Header = () => {
             <RxAvatar size={24} />
           </Link>
 
-          <Link as={RouterLink} to={`/settings`}>
+          <Link as={RouterLink} >
             <MdOutlineSettings size={20} />
           </Link>
           <Button size={"xs"} onClick={logout}>
