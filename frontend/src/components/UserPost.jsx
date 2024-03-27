@@ -7,7 +7,6 @@ import Actions from "./Actions";
 import { useState } from "react";
 
 const UserPost = ({ postImg, postTitle, likes, replies }) => {
-  console.log( postImg, postTitle, likes, replies)
 	const [liked, setLiked] = useState(false);
 	return (
 		<Link to={"/markzuckerberg/post/1"}>

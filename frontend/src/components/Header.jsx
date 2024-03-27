@@ -15,7 +15,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import userAtom from "../atoms/user.atom";
 import { AiFillHome } from "react-icons/ai";
 import { RxAvatar } from "react-icons/rx";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { FiLogOut } from "react-icons/fi";
 import useLogout from "../hooks/useLogout";
 import authScreenAtom from "../atoms/auth.atoms";
@@ -29,7 +29,7 @@ const Header = () => {
   const logout = useLogout();
   const setAuthScreen = useSetRecoilState(authScreenAtom);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  console.log("check for user", user);
+  const navigate = useNavigate();
   return (
     <Flex justifyContent={"space-between"} mt={6} mb="12">
       {user && (
@@ -68,8 +68,15 @@ const Header = () => {
             <Portal>
               <MenuList bg={"gray.dark"}>
                 <MenuItem bg={"gray.dark"} color={"white"} px={12} gap={4}>
-                  <FaBookmark  size={25}/>
-                  Saved
+                  <Flex gap={3}
+                    onClick={(e) => {
+                      navigate("/saved");
+                    }}
+
+                  >
+                    <FaBookmark size={25} />
+                    Saved
+                  </Flex>
                 </MenuItem>
               </MenuList>
             </Portal>

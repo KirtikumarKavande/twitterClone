@@ -36,8 +36,7 @@ const Actions = ({ post }) => {
   let postDataToDb = usePostDataToDb();
   const setUser = useSetRecoilState(userAtom);
 
-  const [isSaved, setIsSaved] = useState(user?.saved?.includes(post?._id));
-  console.log("kirtikumar", user);
+  const [isSaved, setIsSaved] = useState(user?.saved?.some(obj => obj.postId === post?._id));
   const handleLikeAndUnlike = async () => {
     if (!user)
       return showToast(
@@ -119,21 +118,21 @@ const Actions = ({ post }) => {
     try {
       const data = await postDataTodb(`user/saveunsave`, {
         postId: post._id,
+        postedBy:post.postedBy
       });
 
       if (!data.success) return showToast("Error", data.message, "error");
 
       if (!isSaved) {
-        setUser({ ...user, saved: [...user.saved, post._id] });
+        setUser({ ...user, saved: [...user.saved,{postId:post._id,postedBy:post.postedBy}] });
         setIsSaved(true);
         localStorage.setItem(
           "user",
-          JSON.stringify({ ...user, saved: [...user.saved, post._id] })
+          JSON.stringify({ ...user, saved: [...user.saved,{postId:post._id,postedBy:post.postedBy}] })
         );
       } else {
-        let updatedSaved = user.saved.filter((item) => item !== post._id);
+        let updatedSaved = user.saved.filter((item) => item.postId !== post._id);
 
-        console.log("updatedSaved", updatedSaved);
         setIsSaved(false);
 
         setUser({ ...user, saved: updatedSaved });
@@ -147,7 +146,6 @@ const Actions = ({ post }) => {
       showToast("Error", error.message, "error");
     }
   };
-  console.log("isSaved", isSaved);
   return (
     <Flex flexDirection="column">
       <Flex gap={3} my={2} onClick={(e) => e.preventDefault()}>

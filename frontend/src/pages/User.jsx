@@ -13,7 +13,6 @@ const User = () => {
   const showToast = useShowToast();
   const [user, setUser] = useState(null);
   const [post, setPost] = useState([]);
-  console.log("post", post);
   const [loading, setLoading] = useState(true);
   const [fetchingPosts, setFetchingPosts] = useState(true);
 
