@@ -47,6 +47,14 @@ let addUser = asyncHandler(async function (req, res) {
   resData = resData.toObject();
   delete resData.password; // Remove password from response data
 
-  return res.status(201).json(new ApiResponse(201, resData, "user created"));
+  return res
+  .status(200)
+  .json(
+    new ApiResponse(
+      200,
+      { _id:user._id,email: user.email, bio: user.bio, username: user.username,name:user.name,profilePic: user.profilePic,saved:user.saved},
+      "user created"
+    )
+  );
 });
 module.exports = addUser;

@@ -37,6 +37,10 @@ const userSchema = mongoose.Schema(
       type: String,
       default: "",
     },
+    saved: {
+      type: [String],
+      default: [],
+    },
   },
   {
     timestamps: true,

@@ -20,7 +20,7 @@ const loginUser = asyncHandler(async (req, res) => {
       .json(
         new ApiResponse(
           200,
-          { _id:user._id,email: user.email, bio: user.bio, username: user.username,name:user.name,profilePic: user.profilePic},
+          { _id:user._id,email: user.email, bio: user.bio, username: user.username,name:user.name,profilePic: user.profilePic,saved:user.saved},
           "SignIn success"
         )
       );
