@@ -3,6 +3,11 @@ import {
   Button,
   Flex,
   Link,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Portal,
   useColorMode,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -16,6 +21,7 @@ import useLogout from "../hooks/useLogout";
 import authScreenAtom from "../atoms/auth.atoms";
 import { MdAddAPhoto, MdLightMode, MdOutlineSettings } from "react-icons/md";
 import CreatePostModal from "./CreatePostModal";
+import { FaBookmark } from "react-icons/fa6";
 
 const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -23,7 +29,7 @@ const Header = () => {
   const logout = useLogout();
   const setAuthScreen = useSetRecoilState(authScreenAtom);
   const { isOpen, onOpen, onClose } = useDisclosure();
-console.log("check for user",user)
+  console.log("check for user", user);
   return (
     <Flex justifyContent={"space-between"} mt={6} mb="12">
       {user && (
@@ -55,13 +61,24 @@ console.log("check for user",user)
             <MdAddAPhoto size={24} />
           </Link>
 
+          <Menu>
+            <MenuButton>
+              <MdOutlineSettings size={24} cursor={"pointer"} />
+            </MenuButton>
+            <Portal>
+              <MenuList bg={"gray.dark"}>
+                <MenuItem bg={"gray.dark"} color={"white"} px={12} gap={4}>
+                  <FaBookmark  size={25}/>
+                  Saved
+                </MenuItem>
+              </MenuList>
+            </Portal>
+          </Menu>
+
           <Link as={RouterLink} to={`/${user.username}`}>
             <RxAvatar size={24} />
           </Link>
 
-          <Link as={RouterLink} >
-            <MdOutlineSettings size={20} />
-          </Link>
           <Button size={"xs"} onClick={logout}>
             <FiLogOut size={20} />
           </Button>

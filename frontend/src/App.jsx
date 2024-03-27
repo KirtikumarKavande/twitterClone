@@ -9,6 +9,7 @@ import AuthPage from "./pages/Auth";
 import HomePage from "./pages/Homepage";
 import UpdateProfilePage from "./pages/UpdateProfilePage";
 import CreatePost from "./components/CreatePost";
+import SavedPost from "./pages/SavedPost";
 
 const App = () => {
   const user = useRecoilValue(userAtom);
@@ -33,6 +34,10 @@ const App = () => {
             path="/update"
             element={user ? <UpdateProfilePage /> : <Navigate to="/auth" />}
           />
+           <Route
+            path="/saved"
+            element={user ? <SavedPost /> : <Navigate to="/auth" />}
+          />
 
           <Route
             path="/:username"
@@ -51,7 +56,6 @@ const App = () => {
         </Routes>
       </Container>
     </Box>
-
   );
 };
 

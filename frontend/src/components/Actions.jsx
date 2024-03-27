@@ -125,23 +125,29 @@ const Actions = ({ post }) => {
 
       if (!isSaved) {
         setUser({ ...user, saved: [...user.saved, post._id] });
-		setIsSaved(true)
-        localStorage.setItem("user", JSON.stringify(user));
+        setIsSaved(true);
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ ...user, saved: [...user.saved, post._id] })
+        );
       } else {
         let updatedSaved = user.saved.filter((item) => item !== post._id);
 
         console.log("updatedSaved", updatedSaved);
-		setIsSaved(false)
+        setIsSaved(false);
 
         setUser({ ...user, saved: updatedSaved });
 
-        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ ...user, saved: updatedSaved })
+        );
       }
     } catch (error) {
       showToast("Error", error.message, "error");
     }
   };
-  console.log("isSaved",isSaved)
+  console.log("isSaved", isSaved);
   return (
     <Flex flexDirection="column">
       <Flex gap={3} my={2} onClick={(e) => e.preventDefault()}>
