@@ -29,8 +29,21 @@ const App = () => {
           element={user ? <UpdateProfilePage /> : <Navigate to="/auth" />}
         />
 
-        <Route path="/:username" element={<><User/> <CreatePost/> </>} />
-        <Route path='/:username/post/:pid' element={<Post />} />
+        <Route
+          path="/:username"
+          element={
+            user ? (
+              <>
+                <User />
+                <CreatePost />
+              </>
+            ) : (
+              <User />
+            )
+          }
+        />
+
+        <Route path="/:username/post/:pid" element={<Post />} />
       </Routes>
     </Container>
   );

@@ -42,7 +42,6 @@ const User = () => {
     } finally {
       setLoading(false);
       setFetchingPosts(false);
-
     }
   };
 
@@ -55,15 +54,14 @@ const User = () => {
       {!fetchingPosts && post.length === 0 && <h1>User has not posts.</h1>}
 
       {fetchingPosts && (
-				<Flex justifyContent={"center"} my={12}>
-					<Spinner size={"xl"} />
-				</Flex>
-			)}
+        <Flex justifyContent={"center"} my={12}>
+          <Spinner size={"xl"} />
+        </Flex>
+      )}
 
-
-{post.map((post) => (
-				<Post key={post._id} post={post} postedBy={post.postedBy} />
-			))}
+      {post.map((post) => (
+        <Post key={post._id} post={post} postedBy={post.postedBy} />
+      ))}
     </div>
   );
 };

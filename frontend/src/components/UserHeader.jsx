@@ -45,7 +45,7 @@ const UserHeader = ({user}) => {
               p={1}
               borderRadius={"full"}
             >
-              threads.net
+              X.net
             </Text>
           </Flex>
         </Box>
@@ -78,7 +78,7 @@ const UserHeader = ({user}) => {
         <Flex gap={2} alignItems={"center"}>
         <Text color={"gray.light"}>{user.followers?.length} followers</Text>
           <Box w="1" h="1" bg={"gray.light"} borderRadius={"full"}></Box>
-          <Link color={"gray.light"}>instagram.com</Link>
+          <Link color={"gray.light"}>X.com</Link>
         </Flex>
         <Flex>
           <Box className="icon-container">
@@ -109,7 +109,7 @@ const UserHeader = ({user}) => {
           pb="3"
           cursor={"pointer"}
         >
-          <Text fontWeight={"bold"}> Threads</Text>
+          <Text fontWeight={"bold"}> Tweets</Text>
         </Flex>
         <Flex
           flex={1}
