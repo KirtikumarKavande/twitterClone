@@ -23,7 +23,7 @@ const Post = ({ post, postedBy }) => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        if(!postedBy) return
+        if (!postedBy) return;
         const data = await getDataFromDb(`user/userid/${postedBy}`);
 
         if (!data.success) {
@@ -45,21 +45,20 @@ const Post = ({ post, postedBy }) => {
       e.preventDefault();
       if (!window.confirm("Are you sure you want to delete this post?")) return;
 
-      const res = await fetch(`/user/deletepost/${post._id}`, {
-        method: "DELETE",
-      });
-      const data = await res.json();
+      const data = await getDataFromDb(`post/deletepost/${post._id}`);
+
       if (!data.success) {
         showToast("Error", data.message, "error");
         return;
       }
-      showToast("Success", "Post deleted", "success");
+      location.reload();
       setPosts(posts.filter((p) => p._id !== post._id));
+
+      showToast("Success", "Post deleted", "success");
     } catch (error) {
       showToast("Error", error.message, "error");
     }
   };
-
   if (!user) return null;
   return (
     <Link to={`/${user.username}/post/${post._id}`}>

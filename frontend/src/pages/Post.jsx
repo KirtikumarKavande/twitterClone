@@ -54,9 +54,9 @@ const PostPage = () => {
   const handleDeletePost = async () => {
     try {
       if (!window.confirm("Are you sure you want to delete this post?")) return;
-      const data=getDataFromDb(`post/deletepost/${currentPost._id}`)
+      const data=await getDataFromDb(`post/deletepost/${currentPost._id}`)
 
-      if (data.success) {
+      if (!data.success) {
         showToast("Error", data.message, "error");
         return;
       }

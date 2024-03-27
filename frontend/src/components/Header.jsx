@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Flex,
+  Image,
   Link,
   Menu,
   MenuButton,
@@ -31,7 +32,7 @@ const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
   return (
-    <Flex justifyContent={"space-between"} mt={6} mb="12">
+    <Flex justifyContent={"space-between"} alignItems={"center"} mt={6} mb="12">
       {user && (
         <Link as={RouterLink} to="/">
           <AiFillHome size={24} />
@@ -46,7 +47,11 @@ const Header = () => {
           Login
         </Link>
       )}
-      <CreatePostModal isOpen={isOpen} onClose={onClose} />
+      <CreatePostModal isOpen={isOpen}  onClose={onClose} />
+      <Flex fontSize={25} fontWeight={700} gap={2}>
+        <Image height={10} src={"https://res.cloudinary.com/dbrirq6ck/image/upload/v1711546274/twitterClone/a3e7xvvxptf5icernpue.png"}/>
+        Tweeter
+      </Flex>
       <Box onClick={toggleColorMode}>
         {colorMode === "light" ? (
           <MdLightMode size={25} />
@@ -54,6 +59,7 @@ const Header = () => {
           <MdLightMode size={25} />
         )}
       </Box>
+    
 
       {user && (
         <Flex alignItems={"center"} gap={4}>
@@ -68,11 +74,11 @@ const Header = () => {
             <Portal>
               <MenuList bg={"gray.dark"}>
                 <MenuItem bg={"gray.dark"} color={"white"} px={12} gap={4}>
-                  <Flex gap={3}
+                  <Flex
+                    gap={3}
                     onClick={(e) => {
                       navigate("/saved");
                     }}
-
                   >
                     <FaBookmark size={25} />
                     Saved

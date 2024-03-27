@@ -21,7 +21,6 @@ const SavedPost = () => {
     getAllPost();
   }, []);
 
-  console.log("post", post);
   return (
     <div>
       {post.length > 0 &&

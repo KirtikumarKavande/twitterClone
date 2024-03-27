@@ -241,10 +241,11 @@ const ShareSVG = () => {
       aria-label="Share"
       color=""
       fill="rgb(243, 245, 247)"
-      height="20"
       role="img"
       viewBox="0 0 24 24"
-      width="20"
+      width="25"
+      height="22"
+
     >
       <title>Share</title>
       <line
