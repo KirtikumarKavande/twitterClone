@@ -5,10 +5,9 @@ const ApiResponse = require("../../utils/ApiResponse");
 
 const createPost = asyncHandler(async (req, res) => {
   const { text } = req.body;
-  let postImg=null
-  if(req.file){
-   postImg = await uploadToCloudinary(req.file,"",res);
-    
+  let postImg = null;
+  if (req.file) {
+    postImg = await uploadToCloudinary(req.file, "", res);
   }
   const post = new Post({
     postedBy: req.user._id,
@@ -20,7 +19,6 @@ const createPost = asyncHandler(async (req, res) => {
   res
     .status(201)
     .json(new ApiResponse(201, postData, "post created successfully"));
-
 });
 
 module.exports = createPost;

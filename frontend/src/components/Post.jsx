@@ -19,7 +19,6 @@ const Post = ({ post, postedBy }) => {
   const [posts, setPosts] = useRecoilState(postsAtom);
   const navigate = useNavigate();
   const getDataFromDb = useGetDataFromDB();
-
   useEffect(() => {
     const getUser = async () => {
       try {
@@ -45,7 +44,7 @@ const Post = ({ post, postedBy }) => {
       e.preventDefault();
       if (!window.confirm("Are you sure you want to delete this post?")) return;
 
-      const data = await getDataFromDb(`post/deletepost/${post._id}`);
+      const data = await getDataFromDb(`post/deletepost/${post?._id}`);
 
       if (!data.success) {
         showToast("Error", data.message, "error");

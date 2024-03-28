@@ -27,7 +27,6 @@ import { FaBookmark } from "react-icons/fa6";
 const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const user = useRecoilValue(userAtom);
-  console.log("his user",user)
   const logout = useLogout();
   const setAuthScreen = useSetRecoilState(authScreenAtom);
   const { isOpen, onOpen, onClose } = useDisclosure();

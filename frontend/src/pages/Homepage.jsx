@@ -42,7 +42,6 @@ const [userSuggestion,setUserSuggestion] = useState([])
    const userData= await getDataFromDb("user/suggesteduser");
    setUserSuggestion(userData)
   }
-console.log("userSuggestion",userSuggestion)
   useEffect(() => {
     suggestedUser();
   }, []);

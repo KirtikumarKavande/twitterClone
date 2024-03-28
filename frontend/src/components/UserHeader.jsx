@@ -15,7 +15,6 @@ const UserHeader = ({user}) => {
   const toast = useToast(user);
 	const { handleFollowUnfollow, following, updating } = useFollowUnfollow(user);
 
-
   const copyURL = () => {
     const currentURL = window.location.href;
     navigator.clipboard.writeText(currentURL).then(() => {
@@ -64,12 +63,12 @@ const UserHeader = ({user}) => {
       <Text>
       {user.bio}
       </Text>
-      {currentUser?._id === user._id && (
+      {(currentUser?._id||currentUser.data._id) === user._id && (
 				<Link as={RouterLink} to='/update'>
 					<Button size={"sm"}>Update Profile</Button>
 				</Link>
 			)}
-			{currentUser?._id !== user._id && (
+			{(currentUser?._id||currentUser.data._id) !== user._id && (
 				<Button size={"sm"} onClick={handleFollowUnfollow} isLoading={updating}>
 					{following ? "Unfollow" : "Follow"}
 				</Button>
