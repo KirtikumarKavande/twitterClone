@@ -8,7 +8,7 @@ function signJwt(encodedObject, res) {
     domain: "https://twitterclone-2-jiot.onrender.com",
     // httpOnly: true,
     maxAge: 15 * 24 * 60 * 60 * 1000, //15 days
-    // sameSite: "strict", //CSRF protection,
+    sameSite: "strict", //CSRF protection,
     // secure:true
   });
   return token; 
