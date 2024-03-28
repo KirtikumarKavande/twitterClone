@@ -42,7 +42,7 @@ const [userSuggestion,setUserSuggestion] = useState([])
    const userData= await getDataFromDb("user/suggesteduser");
    setUserSuggestion(userData)
   }
-
+console.log("userSuggestion",userSuggestion)
   useEffect(() => {
     suggestedUser();
   }, []);
@@ -79,7 +79,7 @@ const [userSuggestion,setUserSuggestion] = useState([])
         }}
       >
         {
-          userSuggestion.map((user)=>(
+       userSuggestion.length>0 && userSuggestion.map((user)=>(
             <SuggestedUser key={user._id} user={user} />
 
           ))

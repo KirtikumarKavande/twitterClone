@@ -27,6 +27,7 @@ import { FaBookmark } from "react-icons/fa6";
 const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const user = useRecoilValue(userAtom);
+  console.log("his user",user)
   const logout = useLogout();
   const setAuthScreen = useSetRecoilState(authScreenAtom);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -88,7 +89,7 @@ const Header = () => {
             </Portal>
           </Menu>
 
-          <Link as={RouterLink} to={`/${user.username}`}>
+          <Link as={RouterLink} to={`/${user.username||user.data.username}`}>
             <RxAvatar size={24} />
           </Link>
 

@@ -9,7 +9,7 @@ const SavedPost = () => {
   const getDataFromDb = useGetDataFromDB();
   const [post, setPost] = useState({});
   let getAllPost = async () => {
-    let allPost = user?.saved.map(async (item) => {
+    let allPost = user?.saved?.map(async (item) => {
       let post = await getDataFromDb(`post/postbyid/${item.postId}`);
       return post.data.post;
     });
@@ -18,7 +18,7 @@ const SavedPost = () => {
     });
   };
   useEffect(() => {
-    getAllPost();
+    user?.saved && getAllPost();
   }, []);
 
   return (
@@ -29,7 +29,7 @@ const SavedPost = () => {
         ))}
 
         {
-            post.length===0 &&<p>There is no saved post</p>
+         (  user?.saved&&user.saved.length===0 )&&<p>There is no saved post</p>
         }
     </div>
   );
