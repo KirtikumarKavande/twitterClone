@@ -71,7 +71,14 @@ export default function LoginCard() {
         >
           <Stack spacing={4}>
             <FormControl isRequired>
-              <FormLabel>email</FormLabel>
+              <Flex alignItems={"center"} direction={"column"} fontSize={"small"  } >
+
+                <Box fontSize={"medium"}  >Test Credential</Box>
+                <p>email:test@gmail.com</p>
+                <p>password:Test@123</p>
+              </Flex>
+
+              <FormLabel>Email</FormLabel>
               <Input
                 type="text"
                 value={inputs.email}
@@ -93,6 +100,7 @@ export default function LoginCard() {
                     }))
                   }
                 />
+
                 <InputRightElement h={"full"}>
                   <Button
                     variant={"ghost"}
