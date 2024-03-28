@@ -62,7 +62,7 @@ const CreatePostModal = ({ isOpen, onClose }) => {
         return formData;
       };
 
-      const res = await fetch(`http://localhost:4000/api/v1/post/createpost`, {
+      const res = await fetch(`https://twitterclone-2-jiot.onrender.com/api/v1/post/createpost`, {
         method: "POST",
         headers: {
           "Contetnt-Type": "multipart/form-data",
