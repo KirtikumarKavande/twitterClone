@@ -7,12 +7,12 @@ export default defineConfig({
 	server: {
 		port: 3000,
 		// Get rid of the CORS error
-		proxy: {
-			"/api": {
-				target: "http://localhost:4000",
-				changeOrigin: true,
-				secure: false,
-			},
-		},
+		// proxy: {
+		// 	"/api": {
+		// 		target: "http://localhost:4000",
+		// 		changeOrigin: true,
+		// 		secure: false,
+		// 	},
+		// },
 	},
 });

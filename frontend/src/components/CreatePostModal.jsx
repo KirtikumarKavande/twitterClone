@@ -54,22 +54,32 @@ const CreatePostModal = ({ isOpen, onClose }) => {
   const handleCreatePost = async () => {
     setLoading(true);
     try {
-      const createFormData = () => {
-        const formData = new FormData();
-        formData.append("text", postText);
+      // const createFormData = () => {
+      //   const formData = new FormData();
+      //   formData.append("text", postText);
 
-        formData.append("img", imageRef.current.files[0]);
+      //   formData.append("img", imageRef.current.files[0]);
 
-        return formData;
-      };
+      //   return formData;
+      // };
+
+      // const res = await fetch(`${BASE_URL}/post/createpost`, {
+      //   method: "POST",
+      //   headers: {
+      //     "Contetnt-Type": "multipart/form-data",
+      //   },
+      //   credentials: "include",
+      //   body: createFormData(),
+      // });
 
       const res = await fetch(`${BASE_URL}/post/createpost`, {
         method: "POST",
         headers: {
-          "Contetnt-Type": "multipart/form-data",
+          "Content-Type": "application/json",
         },
         credentials: "include",
-        body: createFormData(),
+
+        body: JSON.stringify({ text: postText, img: imgUrl }),
       });
 
       const data = await res.json();

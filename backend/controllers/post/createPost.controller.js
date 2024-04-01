@@ -4,10 +4,10 @@ const Post = require("../../models/post.model");
 const ApiResponse = require("../../utils/ApiResponse");
 
 const createPost = asyncHandler(async (req, res) => {
-  const { text } = req.body;
+  const { text, img } = req.body;
   let postImg = null;
-  if (req.file) {
-    postImg = await uploadToCloudinary(req.file, "", res);
+  if (img) {
+    postImg = await uploadToCloudinary(img, "", res);
   }
   const post = new Post({
     postedBy: req.user._id,

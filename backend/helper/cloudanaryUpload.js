@@ -1,5 +1,4 @@
 const cloudinary = require("cloudinary").v2;
-const fs = require("fs");
 const ApiError = require("../utils/ApiError");
 async function uploadToCloudinary(file, profileImg, res) {
   try {
@@ -8,23 +7,22 @@ async function uploadToCloudinary(file, profileImg, res) {
       api_key: process.env.CLOUDINARY_API_KEY,
       api_secret: process.env.CLOUDINARY_API_SECRET,
     });
-    let incomingImg = profileImg.split("/").pop();
 
-    let finalImg = incomingImg.replace(/\.(jpg|png)$/g, "");//removing jpg and png 
-    decodedString = decodeURIComponent(finalImg);//url to normal string
-   if (profileImg) {
+    if (profileImg) {
+      let incomingImg = profileImg.split("/").pop();
+
+      let finalImg = incomingImg.replace(/\.(jpg|png)$/g, ""); //removing jpg and png
+      decodedString = decodeURIComponent(finalImg); //url to normal string
       await cloudinary.uploader.destroy(`twitterClone/${decodedString}`);
     }
-    let res = await cloudinary.uploader.upload(file.path, {
-      public_id: file.filename + new Date(),
+    let res = await cloudinary.uploader.upload(file, {
+      public_id: new Date(),
       folder: "twitterClone",
     });
-    fs.unlinkSync(file.path);
 
     return res.url;
   } catch (error) {
     console.log(error);
-    fs.unlinkSync(file.path);
 
     return res
       .status(200)

@@ -16,14 +16,18 @@ import userAtom from "../atoms/user.atom";
 import usePreviewImg from "../hooks/usePreviewImg";
 import useShowToast from "../hooks/useShowToast";
 import { BASE_URL } from "../utility/constant";
+import {useNavigate} from 'react-router-dom'
 
 export default function UpdateProfilePage() {
+  console.log(">>>",JSON.parse(localStorage.getItem("user")))
   const [user, setUser] = useRecoilState(userAtom);
+  console.log("lets see user",user)
+  const navigate= useNavigate()
   const [inputs, setInputs] = useState({
-    name: user.name,
-    username: user.username,
-    email: user.email,
-    bio: user.bio,
+    name: user.name||user.data.name,
+    username: user.username||user.data.username,
+    email: user.email||user.data.email,
+    bio: user.bio||user.data.bio,
     password: "",
   });
   const fileRef = useRef(null);
@@ -38,27 +42,38 @@ export default function UpdateProfilePage() {
     if (updating) return;
     setUpdating(true);
     try {
-      const createFormData = () => {
-        const formData = new FormData();
-        const formFields = ["name", "username", "email", "bio", "password"];
 
-        formFields.forEach((field) => {
-          formData.append(field, inputs[field]);
-        });
+ 
+      // const createFormData = () => {
+      //   const formData = new FormData();
+      //   const formFields = ["name", "username", "email", "bio", "password"];
 
-        formData.append("img", fileRef.current.files[0]);
+      //   formFields.forEach((field) => {
+      //     formData.append(field, inputs[field]);
+      //   });
 
-        return formData;
-      };
+      //   formData.append("img", fileRef.current.files[0]);
 
+      //   return formData;
+      // };
+
+      // const res = await fetch(`${BASE_URL}/user/update`, {
+      //   method: "POST",
+      //   headers: {
+      //     "Contetnt-Type": "multipart/form-data",
+      //   },
+      //   credentials: "include",
+      //   body: createFormData(),
+      // });
       const res = await fetch(`${BASE_URL}/user/update`, {
         method: "POST",
         headers: {
-          "Contetnt-Type": "multipart/form-data",
+          "Content-Type": "application/json",
         },
         credentials: "include",
-        body: createFormData(),
+        body: JSON.stringify({ ...inputs, profilePic: imgUrl }),
       });
+
       const data = await res.json();
       if (!data.success) {
         showToast("Error", data.message, "error");
@@ -95,7 +110,7 @@ export default function UpdateProfilePage() {
                 <Avatar
                   size="xl"
                   boxShadow={"md"}
-                  src={imgUrl || user.profilePic}
+                  src={imgUrl ||JSON.parse(localStorage.getItem("user")). profilePic ||user?.profilePic||user?.data?.profile}
                 />
               </Center>
               <Center w="full">
@@ -116,7 +131,7 @@ export default function UpdateProfilePage() {
             <FormLabel>Full name</FormLabel>
             <Input
               placeholder="John Doe"
-              value={inputs.name}
+              value={inputs?.name}
               onChange={(e) => setInputs({ ...inputs, name: e.target.value })}
               _placeholder={{ color: "gray.500" }}
               type="text"
@@ -168,6 +183,7 @@ export default function UpdateProfilePage() {
           </FormControl>
           <Stack spacing={6} direction={["column", "row"]}>
             <Button
+            onClick={()=>navigate('/')}
               bg={"red.400"}
               color={"white"}
               w="full"

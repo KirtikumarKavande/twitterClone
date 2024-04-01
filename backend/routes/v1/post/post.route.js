@@ -11,7 +11,7 @@ const getUserByUsername = require('../../../controllers/post/getPostByUsername.c
 const getPostById = require('../../../controllers/post/getPostById');
 
 let router=express.Router()
-router.post('/createpost',auth, upload.single("img"),createPost)
+router.post('/createpost',auth,createPost)
 router.get('/getpost',auth,getPost)
 router.get('/deletepost/:id',auth,deletePost)
 router.get('/likepost/:id',auth,likePostController)

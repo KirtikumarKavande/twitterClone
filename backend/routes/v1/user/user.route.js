@@ -17,7 +17,7 @@ router.post("/adduser", addUser);
 router.post("/login", loginUser);
 router.get("/logout", logout);
 router.get("/follow/:id", auth, followUnfollowUser);
-router.post("/update", auth, upload.single("img"), updateUser);
+router.post("/update", auth, updateUser);
 router.get("/profile/:username", auth, getPerticularUser);
 router.get('/userid/:id',auth,getUserById)
 router.get('/suggesteduser',auth,suggestedUser)
