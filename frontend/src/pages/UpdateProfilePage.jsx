@@ -15,6 +15,7 @@ import { useRecoilState } from "recoil";
 import userAtom from "../atoms/user.atom";
 import usePreviewImg from "../hooks/usePreviewImg";
 import useShowToast from "../hooks/useShowToast";
+import { BASE_URL } from "../utility/constant";
 
 export default function UpdateProfilePage() {
   const [user, setUser] = useRecoilState(userAtom);
@@ -50,7 +51,7 @@ export default function UpdateProfilePage() {
         return formData;
       };
 
-      const res = await fetch(`https://twitterclone-2-jiot.onrender.com/api/v1/user/update`, {
+      const res = await fetch(`${BASE_URL}/user/update`, {
         method: "POST",
         headers: {
           "Contetnt-Type": "multipart/form-data",

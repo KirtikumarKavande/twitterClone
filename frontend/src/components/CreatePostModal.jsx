@@ -23,6 +23,7 @@ import postsAtom from "../atoms/posts.atom";
 import { useParams } from "react-router-dom";
 import usePreviewImg from "../hooks/usePreviewImg";
 import useShowToast from "../hooks/useShowToast";
+import { BASE_URL } from "../utility/constant";
 
 const MAX_CHAR = 500;
 
@@ -62,7 +63,7 @@ const CreatePostModal = ({ isOpen, onClose }) => {
         return formData;
       };
 
-      const res = await fetch(`https://twitterclone-2-jiot.onrender.com/api/v1/post/createpost`, {
+      const res = await fetch(`${BASE_URL}/post/createpost`, {
         method: "POST",
         headers: {
           "Contetnt-Type": "multipart/form-data",
