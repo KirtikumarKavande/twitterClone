@@ -5,6 +5,7 @@ const routes = require("./routes/index");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const path = require("path");
+const job = require("./cron/cron.js");
 
 require("dotenv").config();
 
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 
 connectToDB();
+job.start();
 
 app.use("/api", routes);
 
