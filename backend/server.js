@@ -5,7 +5,7 @@ const routes = require("./routes/index");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const path = require("path");
-const job = require("./cron/cron.js");
+const job = require("./controllers/cron/cron");
 
 require("dotenv").config();
 
