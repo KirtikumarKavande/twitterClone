@@ -1,10 +1,10 @@
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    if (process.env.NODE_ENV === "production") {
-      cb(null, "backend/public");
-    } else {
+    if (process.env.NODE_ENV === "development") {
       cb(null, "./public");
+    } else {
+      cb(null, "backend/public");
     }
   },
   filename: (req, file, cb) => {
