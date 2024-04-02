@@ -86,7 +86,7 @@ const PostPage = () => {
             <Text fontSize={"sm"} fontWeight={"bold"}>
               {user.username}
             </Text>
-            <Image src="/verified.png" w="4" h={4} ml={4} />
+            <Image src="/img/verified.png" w="4" h={4} ml={4} />
           </Flex>
         </Flex>
         <Flex gap={4} alignItems={"center"}>
